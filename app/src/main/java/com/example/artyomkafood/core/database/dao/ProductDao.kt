@@ -1,9 +1,7 @@
 package com.example.artyomkafood.core.database.dao
 
 import androidx.room.*
-import com.example.artyomkafood.core.database.entity.CategoryAndProductEntity
-import com.example.artyomkafood.core.database.entity.MealEntity
-import com.example.artyomkafood.core.database.entity.ProductAndMealEntity
+import com.example.artyomkafood.core.database.entity.merge.CategoryAndProductEntity
 import com.example.artyomkafood.core.database.entity.ProductEntity
 
 @Dao
@@ -27,9 +25,3 @@ interface ProductDao {
 
 
 }
-
-/*SELECT "product"."product_name"
-FROM "product"
-INNER JOIN "category_product"
-	ON "product"."product_id"  = "category_product"."product_id_i"
-		AND "category_product"."category_id_i" = 1*/

@@ -3,7 +3,7 @@ package com.example.artyomkafood.core.database.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.artyomkafood.feature_one.domain.model.FoodProduct
+import com.example.artyomkafood.feature_food.domain.model.FoodProduct
 
 @Entity(tableName = "product")
 class ProductEntity (

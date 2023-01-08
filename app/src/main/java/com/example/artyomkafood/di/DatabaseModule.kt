@@ -25,4 +25,8 @@ val dataBaseModule = module {
     single {
         get<AppDatabase>(named("Artyom")).getMealDao()
     }
+
+    single {
+        get<AppDatabase>(named("Artyom")).getScheduleDao()
+    }
 }

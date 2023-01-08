@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="6dp"
+    android:layout_marginBottom="8dp"
+    android:animationCache="true"
     android:elevation="5dp"
-    app:cardCornerRadius="16dp"
-    tools:parentTag="androidx.cardview.widget.CardView">
+    app:cardCornerRadius="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:paddingHorizontal="15dp"
-            android:paddingVertical="5dp"
-            android:orientation="horizontal">
+            android:paddingVertical="5dp">
 
             <ImageView
                 android:id="@+id/icon"
@@ -50,16 +51,25 @@
 
         </LinearLayout>
 
+        <View
+            android:id="@+id/divider"
+            android:layout_marginStart="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:visibility="gone"
+            android:background="@color/teal_200" />
+
         <LinearLayout
             android:id="@+id/expanded"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/teal_200"
+            android:background="@color/tab_text_select"
+            android:orientation="horizontal"
             android:paddingHorizontal="15dp"
-            android:orientation="horizontal">
+            android:visibility="gone">
 
             <TextView
+                android:id="@+id/counter"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -70,24 +80,32 @@
             <androidx.legacy.widget.Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/counter_gr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <ImageView
-                android:id="@+id/counter"
+                android:id="@+id/arrow"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:rotation="-90"
-                android:src="@drawable/ic_arrow_data_pick"/>
+                android:src="@drawable/ic_arrow_data_pick" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_schedule" />
 
     </LinearLayout>
 
 
-</merge>
+</androidx.cardview.widget.CardView>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.artyomkafood.feature_one.presentation.category.StartFragment"
+        android:name="com.example.artyomkafood.feature_init.presentation.category.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/foodFragment"
-        android:name="com.example.artyomkafood.feature_one.presentation.food.FoodFragment"
+        android:name="com.example.artyomkafood.feature_init.presentation.food.FoodFragment"
         android:label="fragment_food"
         tools:layout="@layout/fragment_food" >
         <argument android:name="category_id"
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/mealFragment"
-        android:name="com.example.artyomkafood.feature_one.presentation.meal.MealFragment"
+        android:name="com.example.artyomkafood.feature_init.presentation.meal.MealFragment"
         android:label="fragment_meal"
         tools:layout="@layout/fragment_meal" >
         <argument
@@ -36,7 +36,23 @@
     </fragment>
     <fragment
         android:id="@+id/dayFragment"
-        android:name="com.example.artyomkafood.feature_day.DayFragment"
+        android:name="com.example.artyomkafood.feature_food.presentation.day.DayFragment"
         android:label="fragment_day"
-        tools:layout="@layout/fragment_day" />
+        tools:layout="@layout/fragment_day" >
+        <action
+            android:id="@+id/action_dayFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.artyomkafood.feature_food.presentation.add.AddFragment"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add" >
+        <argument
+            android:name="date"
+            app:argType="long" />
+        <argument
+            android:name="scheduleId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
