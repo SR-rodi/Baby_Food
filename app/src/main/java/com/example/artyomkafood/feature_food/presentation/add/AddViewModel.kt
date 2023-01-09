@@ -1,28 +1,30 @@
 package com.example.artyomkafood.feature_food.presentation.add
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.example.artyomkafood.core.basemodel.BaseViewModel
+import com.example.artyomkafood.feature_food.data.SettingsCategoryAdapter
 import com.example.artyomkafood.feature_food.domain.model.FoodCategory
 import com.example.artyomkafood.feature_food.domain.repository.CategoryRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 class AddViewModel(
     private val categoryRepository: CategoryRepository,
-) : ViewModel() {
+    private val savedStateHandle: SavedStateHandle,
+) : BaseViewModel<FoodCategory>() {
 
-    private val _data = MutableSharedFlow<List<FoodCategory>>()
-    val data = _data.asSharedFlow()
-
-    fun getCategory() {
+    fun getCategory() =
         viewModelScope.launch(Dispatchers.IO) {
-           val a= categoryRepository.getAllCategory()
-            _data.emit(a)
-
+            _data.emit(categoryRepository.getAllCategory())
         }
+
+    fun settingChildren(position: Int, date: Long, scheduleId: Int) {
+        savedStateHandle[SETTING_CHILDREN_FRAGMENT] =
+            SettingsCategoryAdapter(date, scheduleId, position)
     }
 
-
+    companion object {
+        const val SETTING_CHILDREN_FRAGMENT = "settingChildren"
+    }
 }

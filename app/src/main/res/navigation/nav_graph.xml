@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dayFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.artyomkafood.feature_init.presentation.category.StartFragment"
+        android:name="com.example.artyomkafood.feature_food.presentation.init.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
-            android:id="@+id/action_startFragment_to_foodFragment"
-            app:destination="@id/foodFragment" />
+            android:id="@+id/action_startFragment_to_dayFragment"
+            app:destination="@id/dayFragment" />
     </fragment>
     <fragment
         android:id="@+id/foodFragment"
@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_dayFragment_to_addFragment"
             app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_dayFragment_to_correctFragment"
+            app:destination="@id/correctFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -54,5 +57,17 @@
         <argument
             android:name="scheduleId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_addFragment_to_correctFragment"
+            app:destination="@id/correctFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/correctFragment"
+        android:name="com.example.artyomkafood.feature_food.presentation.correct.CorrectFragment"
+        android:label="fragment_correct"
+        tools:layout="@layout/fragment_correct" >
+        <argument
+            android:name="items"
+            app:argType="com.example.artyomkafood.core.database.dao.ScheduleMeal" />
     </fragment>
 </navigation>

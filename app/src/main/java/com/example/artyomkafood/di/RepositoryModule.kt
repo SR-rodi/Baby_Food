@@ -1,5 +1,6 @@
 package com.example.artyomkafood.di
 
+import androidx.lifecycle.SavedStateHandle
 import com.example.artyomkafood.feature_food.data.CategoryRepositoryImpl
 import com.example.artyomkafood.feature_food.data.MealRepositoryImpl
 import com.example.artyomkafood.feature_food.data.ProductRepositoryImpl
@@ -18,4 +19,6 @@ val repositoryModule = module {
     single<MealRepository> { MealRepositoryImpl(get()) }
 
     single<ScheduleRepository> { ScheduleRepositoryImpl(get()) }
+
+    single { SavedStateHandle() }
 }

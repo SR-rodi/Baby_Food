@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.artyomkafood.core.basemodel.BaseViewModel
 import com.example.artyomkafood.core.database.Schedule
 import com.example.artyomkafood.core.database.dao.ScheduleMeal
 import com.example.artyomkafood.core.database.entity.MealEntity
@@ -21,14 +22,11 @@ import java.util.Calendar
 
 class DayViewModel(
     private val scheduleRepository: ScheduleRepository,
-    private val mealRepository: MealRepository
-) : ViewModel() {
-
-    private val _data = MutableSharedFlow<List<Schedule>>()
-    val data = _data.asSharedFlow()
+    private val mealRepository: MealRepository,
+) : BaseViewModel<Schedule>() {
 
     @SuppressLint("SimpleDateFormat")
-    val simpleDateFormat = SimpleDateFormat("dd.MM.yy")
+    private val simpleDateFormat = SimpleDateFormat("dd.MM.yy")
 
     private val calendar = Calendar.getInstance()
 
@@ -41,8 +39,7 @@ class DayViewModel(
         getSchedule()
     }
 
-    fun getSchedule() {
-
+    fun getSchedule()=
         viewModelScope.launch(Dispatchers.IO) {
             val schedule = scheduleRepository.getSchedule()
             val meal = scheduleRepository.getMeal(setDate())
@@ -52,7 +49,6 @@ class DayViewModel(
             }
             _data.emit(schedule)
         }
-    }
 
     fun setDate() =
         Calendar.getInstance().apply {
@@ -62,10 +58,8 @@ class DayViewModel(
             set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH))
         }.timeInMillis
 
-    fun onSwipeEvent(meal: ScheduleMeal) {
+    fun onSwipeEvent(meal: ScheduleMeal) =
         viewModelScope.launch(Dispatchers.IO) {
-            mealRepository.delete(MealEntity(meal.meal_volume,setDate(),meal.meal_id))
+            mealRepository.delete(MealEntity(meal.meal_volume, setDate(), meal.meal_id))
         }
-    }
-
 }

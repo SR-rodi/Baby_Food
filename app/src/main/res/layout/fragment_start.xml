@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature_init.presentation.category.StartFragment">
+    tools:context=".feature_food.presentation.init.StartFragment">
     <com.example.artyomkafood.core.castomView.MenuItem
         android:layout_width="match_parent"
         android:layout_height="45dp"

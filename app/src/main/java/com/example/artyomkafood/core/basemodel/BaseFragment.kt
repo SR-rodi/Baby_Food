@@ -5,7 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 abstract class BaseFragment<B : ViewBinding> : Fragment() {
 
@@ -21,6 +27,14 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
     ): View {
         _binding = initBinding(inflater)
         return binding.root
+    }
+
+    protected fun <T:Any>dataObserver(sharedFlow: SharedFlow<List<T>>,block:(list:List<T>)->Unit){
+        viewLifecycleOwner.lifecycleScope.launch{
+            sharedFlow.collect{
+                block(it)
+            }
+        }
     }
 
     override fun onDestroy() {

@@ -6,8 +6,10 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.artyomkafood.core.basemodel.BaseFragment
+import com.example.artyomkafood.core.database.Schedule
 import com.example.artyomkafood.databinding.FragmentDayBinding
 import com.example.artyomkafood.feature_food.presentation.day.adapter.DayAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -17,37 +19,46 @@ class DayFragment : BaseFragment<FragmentDayBinding>() {
 
     private val viewModel by viewModel<DayViewModel>()
 
+    private val adapter by lazy {
+        DayAdapter(
+            onClickAddButton = { scheduleId -> navigation(scheduleId) },
+            onSwipeEvent = { meal -> viewModel.onSwipeEvent(meal) },
+            onClickFoodItem = {
+                findNavController().navigate(DayFragmentDirections.actionDayFragmentToCorrectFragment(it))}
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getSchedule()
+        startSettings()
 
+        onClickSetDate(binding.nextDayButton, true)
+        onClickSetDate(binding.backDayButton, false)
+
+        dataObserver(viewModel.data) { list -> setAdapter(list) }
+
+    }
+
+    private fun startSettings() {
+        viewModel.getSchedule()
         binding.date.text = viewModel.getDate()
 
-        binding.nextDayButton.setOnClickListener {
-            viewModel.onClickDateButton(true)
-            binding.date.text = viewModel.getDate()
-        }
-        binding.backDayButton.setOnClickListener {
-            viewModel.onClickDateButton(false)
-            binding.date.text = viewModel.getDate()
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.data.collect { list->
-                binding.recyclerView.adapter =
-                    DayAdapter(list,{scheduleId-> navigation(scheduleId) }){ meal->
-                    viewModel.onSwipeEvent(meal)
-                }
-            }
-        }
     }
 
+    private fun setAdapter(list: List<Schedule>) {
+        adapter.submitList(list)
+        binding.recyclerView.adapter = adapter
+    }
 
-    private fun navigation(scheduleId:Int) {
+    private fun onClickSetDate(button: FloatingActionButton, isNext: Boolean) =
+        button.setOnClickListener {
+            viewModel.onClickDateButton(isNext)
+            binding.date.text = viewModel.getDate()
+        }
+
+    private fun navigation(scheduleId: Int) =
         findNavController()
-            .navigate(DayFragmentDirections.actionDayFragmentToAddFragment(viewModel.setDate(),scheduleId))
-    }
-
+            .navigate(DayFragmentDirections.actionDayFragmentToAddFragment(viewModel.setDate(),
+                scheduleId))
 }

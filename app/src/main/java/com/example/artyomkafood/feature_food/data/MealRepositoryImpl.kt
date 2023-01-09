@@ -16,4 +16,6 @@ class MealRepositoryImpl(private val dao: MealDao) : MealRepository {
     override suspend fun getLastIndex() =dao.getLastIndex()
 
     override suspend fun delete(meal: MealEntity)= dao.deleteMeal(meal)
+
+    override suspend fun update(meal: MealEntity) = dao.updateMeal(meal)
 }

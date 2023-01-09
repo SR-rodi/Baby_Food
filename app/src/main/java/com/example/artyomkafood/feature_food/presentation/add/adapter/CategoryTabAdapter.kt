@@ -6,13 +6,19 @@ import com.example.artyomkafood.feature_food.presentation.add.chldren.ProductTab
 
 class CategoryTabAdapter(
     fragment: Fragment,
-    private val itemCount: Int,
-    private val date: Long,
-   private val scheduleId: Int,
+    private val onSetting: (position: Int) -> Unit,
 ) : FragmentStateAdapter(fragment) {
-    override fun getItemCount() = itemCount
+
+    fun setSize(count: Int) {
+        itemsSize = count
+    }
+
+    private var itemsSize = 0
+
+    override fun getItemCount() = itemsSize
 
     override fun createFragment(position: Int): Fragment {
-        return ProductTabFragment.newInstance(position + 1,date,scheduleId)
+        onSetting(position + 1)
+        return ProductTabFragment()
     }
 }

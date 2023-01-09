@@ -1,11 +1,13 @@
 package com.example.artyomkafood.core.database.dao
 
+import android.os.Parcelable
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.artyomkafood.core.database.entity.MealEntity
 import com.example.artyomkafood.core.database.entity.ScheduleEntity
+import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -22,13 +24,14 @@ interface ScheduleDao {
             "on meal_id = meal_id_merge  " +
             "and product_id = product_id_merge Where meal_data =:date")
     fun getMeatByScheduleId(date: Long): List<ScheduleMeal>
+
 }
 
-class ScheduleMeal(
+@Parcelize
+data class ScheduleMeal(
     val product_name: String,
     val meal_volume: Int,
     val meal_data: Long,
     val meal_id: Int,
     val schedule_id_merge: Int,
-
-    )
+):Parcelable

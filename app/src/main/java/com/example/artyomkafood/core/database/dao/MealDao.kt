@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.example.artyomkafood.core.database.entity.MealEntity
 import com.example.artyomkafood.core.database.entity.merge.ProductAndMealAndScheduleEntity
 
@@ -25,4 +26,7 @@ interface MealDao {
 
     @Query("SELECT seq FROM sqlite_sequence WHERE name=\"meal\"")
     fun getLastIndex():Int
+
+    @Update
+    fun updateMeal(meal: MealEntity)
 }

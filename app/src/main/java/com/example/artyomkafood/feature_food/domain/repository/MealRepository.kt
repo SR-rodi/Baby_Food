@@ -14,4 +14,6 @@ interface MealRepository {
     suspend fun getLastIndex():Int
 
     suspend fun delete(meal: MealEntity)
+
+    suspend fun update(meal: MealEntity)
 }
