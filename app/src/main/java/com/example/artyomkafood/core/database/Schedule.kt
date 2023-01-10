@@ -7,7 +7,8 @@ class Schedule(
    val id: Int?,
    val name: String,
    val imageId: Int,
-   val meal:MutableList<ScheduleMeal> = mutableListOf()
+   var meal:MutableList<ScheduleMeal> = mutableListOf(),
+   var expanded :Boolean = false
 ) {
    fun toEntity()= ScheduleEntity(id, name, imageId)
 }

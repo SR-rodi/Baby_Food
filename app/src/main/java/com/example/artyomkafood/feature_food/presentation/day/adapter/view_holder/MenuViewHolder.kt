@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.artyomkafood.core.ClickState
 import com.example.artyomkafood.core.SwipeToDelete
 import com.example.artyomkafood.core.database.Schedule
 import com.example.artyomkafood.core.database.dao.ScheduleMeal
@@ -14,16 +15,16 @@ class MenuViewHolder(private val binding: ItemMenuBinding) : RecyclerView.ViewHo
     @SuppressLint("SetTextI18n")
     fun bind(
         item: Schedule,
-        onClickAddButton: (id: Int) -> Unit,
-        onSwipeEvent: (scheduleMeal: ScheduleMeal) -> Unit,
-        onClickFoodItem: (item: ScheduleMeal) -> Unit
+        onEvent: (state: ClickState) -> Unit,
     ) {
 
         var counter = 0
         item.meal.forEach { counter += it.meal_volume }
 
         val swipeItem = SwipeToDelete { position ->
-            onSwipeEvent(item.meal[position])
+            onEvent(ClickState.SWIPE.apply {
+                meal = item.meal[position]
+            })
             counter -= item.meal[position].meal_volume
 
             item.meal.removeAt(position)
@@ -41,9 +42,11 @@ class MenuViewHolder(private val binding: ItemMenuBinding) : RecyclerView.ViewHo
         itemTouchHelper.attachToRecyclerView(binding.recyclerView)
 
         binding.root.setOnClickListener {
-            item.id?.let { it1 -> onClickAddButton(it1) }
+            onEvent(ClickState.ADD_BUTTON.apply{
+              meal = item.meal.first()
+            })
         }
-        val adapter = ScheduleMealAdapter(){onClickFoodItem(it)}
+        val adapter = ScheduleMealAdapter { onEvent(it) }
         adapter.submitList(item.meal)
         binding.recyclerView.adapter = adapter
 

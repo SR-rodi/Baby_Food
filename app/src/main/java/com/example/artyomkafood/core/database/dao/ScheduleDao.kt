@@ -3,6 +3,7 @@ package com.example.artyomkafood.core.database.dao
 import android.os.Parcelable
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.MapInfo
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.artyomkafood.core.database.entity.MealEntity
@@ -18,20 +19,22 @@ interface ScheduleDao {
     @Query("SELECT*from schedule")
     fun getSchedule(): List<ScheduleEntity>
 
-    @Query("SELECT meal_volume, meal_data,meal_id, product_name,schedule_id_merge " +
-            "From meal,product" +
+    @Query("SELECT meal_volume, meal_data,meal_id, product_name,schedule_id_merge,schedule_name " +
+            "From meal,product,schedule" +
             " inner join product_meal " +
-            "on meal_id = meal_id_merge  " +
+            "on meal_id = meal_id_merge And schedule_id = schedule_id_merge " +
             "and product_id = product_id_merge Where meal_data =:date")
-    fun getMeatByScheduleId(date: Long): List<ScheduleMeal>
+    @MapInfo(keyColumn = "schedule_name")
+    fun getMeatByScheduleId(date: Long):Flow<Map<String,MutableList<ScheduleMeal>>>
 
 }
 
 @Parcelize
 data class ScheduleMeal(
     val product_name: String,
-    val meal_volume: Int,
+    var meal_volume: Int,
     val meal_data: Long,
     val meal_id: Int,
     val schedule_id_merge: Int,
-):Parcelable
+    val schedule_name: String,
+) : Parcelable

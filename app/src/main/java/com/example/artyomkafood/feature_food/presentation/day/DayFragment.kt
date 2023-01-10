@@ -3,14 +3,14 @@ package com.example.artyomkafood.feature_food.presentation.day
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.artyomkafood.core.ClickState
 import com.example.artyomkafood.core.basemodel.BaseFragment
 import com.example.artyomkafood.core.database.Schedule
+import com.example.artyomkafood.core.extensions.createEditDialog
 import com.example.artyomkafood.databinding.FragmentDayBinding
 import com.example.artyomkafood.feature_food.presentation.day.adapter.DayAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DayFragment : BaseFragment<FragmentDayBinding>() {
@@ -20,12 +20,7 @@ class DayFragment : BaseFragment<FragmentDayBinding>() {
     private val viewModel by viewModel<DayViewModel>()
 
     private val adapter by lazy {
-        DayAdapter(
-            onClickAddButton = { scheduleId -> navigation(scheduleId) },
-            onSwipeEvent = { meal -> viewModel.onSwipeEvent(meal) },
-            onClickFoodItem = {
-                findNavController().navigate(DayFragmentDirections.actionDayFragmentToCorrectFragment(it))}
-        )
+        DayAdapter { onClickListener(it) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,7 +38,6 @@ class DayFragment : BaseFragment<FragmentDayBinding>() {
     private fun startSettings() {
         viewModel.getSchedule()
         binding.date.text = viewModel.getDate()
-
     }
 
     private fun setAdapter(list: List<Schedule>) {
@@ -57,8 +51,20 @@ class DayFragment : BaseFragment<FragmentDayBinding>() {
             binding.date.text = viewModel.getDate()
         }
 
-    private fun navigation(scheduleId: Int) =
-        findNavController()
-            .navigate(DayFragmentDirections.actionDayFragmentToAddFragment(viewModel.setDate(),
-                scheduleId))
+    private fun navigation(scheduleId: Int?) {
+        if (scheduleId != null)
+            findNavController()
+                .navigate(DayFragmentDirections.actionDayFragmentToAddFragment(viewModel.setDate(),
+                    scheduleId))
+    }
+
+    private fun onClickListener(state: ClickState) {
+        when (state) {
+            ClickState.ADD_BUTTON -> navigation(state.meal?.schedule_id_merge)
+            ClickState.SWIPE -> viewModel.onSwipeEvent(state.meal)
+            ClickState.CLICK_ITEM -> createEditDialog(state.meal) { newVolume ->
+                viewModel.updateMeal(state.meal, newVolume)
+            }
+        }
+    }
 }

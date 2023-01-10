@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface ScheduleRepository {
 
-   suspend fun addListSchedule(list: List<Schedule>)
+    suspend fun addListSchedule(list: List<Schedule>)
 
-   suspend fun getSchedule(): List<Schedule>
+    suspend fun getSchedule(date: Long): List<Schedule>
 
-  suspend fun getMeal(data:Long):List<ScheduleMeal>
+    suspend fun getMeal(date: Long): Flow<Map<String, MutableList<ScheduleMeal>>>
 }

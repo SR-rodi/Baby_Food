@@ -1,17 +1,19 @@
 package com.example.artyomkafood.feature_food.presentation.day.adapter
 
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.example.artyomkafood.core.ClickState
 import com.example.artyomkafood.core.basemodel.RecyclerViewListAdapter
 import com.example.artyomkafood.core.database.dao.ScheduleMeal
 import com.example.artyomkafood.databinding.ItemScheduleBinding
 import com.example.artyomkafood.feature_food.presentation.day.adapter.view_holder.ScheduleMealViewHolder
 
 class ScheduleMealAdapter (
-    private val onClick:(item:ScheduleMeal)->Unit
+    private val onClick:(event: ClickState)->Unit
         ): RecyclerViewListAdapter<ScheduleMeal, ScheduleMealViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ScheduleMealViewHolder(
