@@ -14,7 +14,7 @@ val viewModelModel = module {
 
     viewModel { DayViewModel(get(),get()) }
 
-    viewModel { AddViewModel(get(),get()) }
+    viewModel { AddViewModel(get(),get(),get()) }
 
     viewModel { ProductTabViewModel(get(),get(),get()) }
 

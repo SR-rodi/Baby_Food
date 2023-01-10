@@ -24,4 +24,6 @@ class ProductRepositoryImpl(private val dao: ProductDao): ProductRepository {
     override suspend fun insertMergeProductInCategory(marge: CategoryAndProductEntity) =
         dao.insertMerge(marge)
 
+    override suspend fun getLastIndex()=dao.getLastIndex()
+
 }

@@ -1,18 +1,15 @@
 package com.example.artyomkafood.feature_food.presentation.add
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.artyomkafood.core.basemodel.BaseFragment
+import com.example.artyomkafood.core.extensions.createAddProductDialog
 import com.example.artyomkafood.databinding.FragmentAddBinding
 import com.example.artyomkafood.feature_food.domain.model.FoodCategory
 import com.example.artyomkafood.feature_food.presentation.add.adapter.CategoryTabAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.parcel.Parcelize
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddFragment : BaseFragment<FragmentAddBinding>() {
@@ -33,9 +30,19 @@ class AddFragment : BaseFragment<FragmentAddBinding>() {
 
         viewModel.getCategory()
 
+        startDialogListener(viewModel.dropItems)
+
         dataObserver(viewModel.data) { list ->
             setAdapter(list)
             setTabLayout(list)
+        }
+    }
+
+    private fun startDialogListener(list: List<String>){
+        binding.addProductButton.setOnClickListener {
+            createAddProductDialog(list) { name,id->
+                viewModel.addProduct(name,id)
+            }
         }
     }
 

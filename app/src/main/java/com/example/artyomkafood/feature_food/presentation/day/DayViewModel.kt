@@ -25,7 +25,6 @@ class DayViewModel(
 
     private val calendar = Calendar.getInstance()
 
-
     fun getDate(): String =
         simpleDateFormat.format(calendar.timeInMillis)
 
