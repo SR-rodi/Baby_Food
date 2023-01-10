@@ -12,6 +12,42 @@ import com.example.artyomkafood.databinding.ItemMenuBinding
 import com.example.artyomkafood.feature_food.presentation.day.adapter.ScheduleMealAdapter
 
 class MenuViewHolder(private val binding: ItemMenuBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    private fun onSwipeItem(
+        item: Schedule,
+        onEvent: (state: ClickState) -> Unit,
+    ): SwipeToDelete {
+        return SwipeToDelete { position ->
+            onEvent(ClickState.SWIPE.apply {
+                meal = item.meal[position]
+            })
+        }
+    }
+
+    private fun onClickAddButton(
+        item: Schedule,
+        onEvent: (state: ClickState) -> Unit,
+    ) {
+        binding.root.setOnClickListener {
+            onEvent(ClickState.ADD_BUTTON.apply {
+                index = item.id
+            })
+        }
+    }
+
+    private fun onClickExpanded(
+        item: Schedule,
+        onEvent: (state: ClickState) -> Unit,
+    ) {
+        binding.expanded.setOnClickListener {
+            binding.arrow.rotation = binding.arrow.rotation + 180
+
+            binding.divider.isVisible = !binding.divider.isVisible
+            binding.expanded.isSelected = !binding.expanded.isSelected
+            binding.recyclerView.isVisible = !binding.recyclerView.isVisible
+        }
+    }
+
     @SuppressLint("SetTextI18n")
     fun bind(
         item: Schedule,
@@ -21,31 +57,12 @@ class MenuViewHolder(private val binding: ItemMenuBinding) : RecyclerView.ViewHo
         var counter = 0
         item.meal.forEach { counter += it.meal_volume }
 
-        val swipeItem = SwipeToDelete { position ->
-            onEvent(ClickState.SWIPE.apply {
-                meal = item.meal[position]
-            })
-            counter -= item.meal[position].meal_volume
+        ItemTouchHelper(onSwipeItem(item, onEvent)).attachToRecyclerView(binding.recyclerView)
 
-            item.meal.removeAt(position)
-            binding.recyclerView.adapter?.notifyItemRemoved(position)
+        onClickAddButton(item, onEvent)
 
-            binding.counterGr.text = counter.toString() + "гр"
-            binding.expanded.isVisible = item.meal.isNotEmpty()
-            binding.divider.isVisible = item.meal.isNotEmpty()
-            binding.counter.text = item.meal.size.toString() + " шт"
-        }
+        onClickExpanded(item,onEvent)
 
-
-        val itemTouchHelper = ItemTouchHelper(swipeItem)
-
-        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
-
-        binding.root.setOnClickListener {
-            onEvent(ClickState.ADD_BUTTON.apply{
-              meal = item.meal.first()
-            })
-        }
         val adapter = ScheduleMealAdapter { onEvent(it) }
         adapter.submitList(item.meal)
         binding.recyclerView.adapter = adapter
@@ -53,14 +70,12 @@ class MenuViewHolder(private val binding: ItemMenuBinding) : RecyclerView.ViewHo
         binding.counterGr.text = counter.toString() + "гр"
 
         binding.expanded.isVisible = item.meal.isNotEmpty()
+        binding.divider.isVisible = item.meal.isNotEmpty()
+        binding.expanded.isSelected = item.meal.isNotEmpty()
+        binding.recyclerView.isVisible = item.meal.isNotEmpty()
         binding.counter.text = item.meal.size.toString() + " шт"
         binding.title.text = item.name
         binding.icon.setImageResource(item.imageId)
-        binding.expanded.setOnClickListener {
-            binding.divider.isVisible = !binding.divider.isVisible
-            binding.expanded.isSelected = !binding.expanded.isSelected
-            binding.arrow.rotation = binding.arrow.rotation + 180
-            binding.recyclerView.isVisible = !binding.recyclerView.isVisible
-        }
+
     }
 }

@@ -60,7 +60,7 @@ class DayFragment : BaseFragment<FragmentDayBinding>() {
 
     private fun onClickListener(state: ClickState) {
         when (state) {
-            ClickState.ADD_BUTTON -> navigation(state.meal?.schedule_id_merge)
+            ClickState.ADD_BUTTON -> navigation(state.index)
             ClickState.SWIPE -> viewModel.onSwipeEvent(state.meal)
             ClickState.CLICK_ITEM -> createEditDialog(state.meal) { newVolume ->
                 viewModel.updateMeal(state.meal, newVolume)

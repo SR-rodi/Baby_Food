@@ -25,13 +25,6 @@ class DayViewModel(
 
     private val calendar = Calendar.getInstance()
 
-    fun setExpanded(position: Int) {
-        viewModelScope.launch {
-            data.collect {
-                it[position].expanded = !it[position].expanded
-            }
-        }
-    }
 
     fun getDate(): String =
         simpleDateFormat.format(calendar.timeInMillis)
