@@ -1,4 +1,4 @@
-package com.example.artyomkafood.feature_init.presentation.food
+package com.example.artyomkafood.feature_food.presentation.add.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.example.artyomkafood.feature_food.domain.model.FoodProduct
 import com.example.artyomkafood.feature_food.presentation.add.adapter.FoodViewHolder
 
 class FoodAdapter(
-    private val onClickItem: (id: Int?) -> Unit,
+    private val onClickItem: (item: FoodProduct) -> Unit,
     private val onClickCheckBox: (item: FoodProduct) -> Unit,
 ) : RecyclerViewListAdapter<FoodProduct, FoodViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = FoodViewHolder(

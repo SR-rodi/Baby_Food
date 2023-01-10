@@ -7,7 +7,7 @@ import com.example.artyomkafood.feature_food.domain.model.FoodProduct
 class FoodViewHolder(private val binding: ItemFoodBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(
         item: FoodProduct,
-        onClickItem: (id: Int?) -> Unit,
+        onClickItem: (item: FoodProduct) -> Unit,
         onClickCheckBox: (item: FoodProduct) -> Unit,
     ) {
         binding.name.text = item.name
@@ -16,7 +16,7 @@ class FoodViewHolder(private val binding: ItemFoodBinding) : RecyclerView.ViewHo
             onClickCheckBox(item)
         }
         binding.root.setOnClickListener {
-            onClickItem(item.id)
+            onClickItem(item)
         }
     }
 }

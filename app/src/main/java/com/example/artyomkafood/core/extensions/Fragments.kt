@@ -8,6 +8,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import com.example.artyomkafood.R
 import com.example.artyomkafood.core.database.dao.ScheduleMeal
+import com.example.artyomkafood.feature_food.domain.model.FoodProduct
 import kotlinx.android.synthetic.main.fragment_correct.view.*
 
 fun Fragment.checkFirstStart(): Boolean {
@@ -20,7 +21,8 @@ fun Fragment.checkFirstStart(): Boolean {
 }
 
 fun Fragment.createEditDialog(
-    item: ScheduleMeal?,
+    product: String?,
+    volume:Int?,
     editMeal: (newVolume: String) -> Unit,
 ) {
     val view = LayoutInflater.from(requireContext())
@@ -33,8 +35,8 @@ fun Fragment.createEditDialog(
        editButton.isEnabled = text?.length != 0
    }
 
-    title.text = item?.product_name
-    editText.text.insert(0, item?.meal_volume.toString())
+    title.text = product
+    editText.text.insert(0, volume?.toString())
 
     val dialog = AlertDialog.Builder(requireContext())
         .setView(view)

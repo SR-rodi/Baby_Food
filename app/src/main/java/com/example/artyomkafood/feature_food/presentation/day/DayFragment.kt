@@ -62,9 +62,10 @@ class DayFragment : BaseFragment<FragmentDayBinding>() {
         when (state) {
             ClickState.ADD_BUTTON -> navigation(state.index)
             ClickState.SWIPE -> viewModel.onSwipeEvent(state.meal)
-            ClickState.CLICK_ITEM -> createEditDialog(state.meal) { newVolume ->
-                viewModel.updateMeal(state.meal, newVolume)
-            }
+            ClickState.CLICK_ITEM ->
+                createEditDialog(state.meal?.product_name, state.meal?.meal_volume) { newVolume ->
+                    viewModel.updateMeal(state.meal, newVolume)
+                }
         }
     }
 }
