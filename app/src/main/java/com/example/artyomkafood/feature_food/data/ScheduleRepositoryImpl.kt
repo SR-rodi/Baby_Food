@@ -2,14 +2,12 @@ package com.example.artyomkafood.feature_food.data
 
 import com.example.artyomkafood.core.database.Schedule
 import com.example.artyomkafood.core.database.dao.ScheduleDao
+import com.example.artyomkafood.core.database.dao.ScheduleMeal
 import com.example.artyomkafood.core.extensions.toListEntity
 import com.example.artyomkafood.core.extensions.toListSchedule
 import com.example.artyomkafood.feature_food.domain.repository.ScheduleRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 
 class ScheduleRepositoryImpl(
     private val dao: ScheduleDao,
@@ -17,16 +15,18 @@ class ScheduleRepositoryImpl(
 
     override suspend fun addListSchedule(list: List<Schedule>) = dao.insert(list.toListEntity())
 
+    override fun getSchedule(date: Long) =
+        dao.getSchedule().map { it.toListSchedule() }
+            .combine(dao.getMeatByScheduleId(date), this::merge)
 
-    override suspend fun getSchedule(date: Long): List<Schedule> {
-        return  dao.getSchedule().toListSchedule().sortedBy {it.id}
- /*       val meal = getMeal(date)
-        meal.forEach { scheduleMeal ->
-            schedule[scheduleMeal.schedule_id_merge - 1].meal.add(scheduleMeal)
+    private fun merge(
+        schedules: List<Schedule>,
+        mealSchedules: Map<String, MutableList<ScheduleMeal>>,
+    ): List<Schedule> {
+        return schedules.map { schedule->
+            if (mealSchedules[schedule.name] != null) schedule.meal = mealSchedules[schedule.name]!!
+            else schedule.meal = mutableListOf()
+            schedule
         }
-        return schedule*/
     }
-
-    override suspend fun getMeal(date: Long) = dao.getMeatByScheduleId(date)
-
 }

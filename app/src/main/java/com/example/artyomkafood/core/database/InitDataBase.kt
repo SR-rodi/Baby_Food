@@ -1,15 +1,13 @@
-package com.example.artyomkafood.core
+package com.example.artyomkafood.core.database
 
 import com.example.artyomkafood.R
-import com.example.artyomkafood.core.database.Schedule
 import com.example.artyomkafood.core.database.entity.merge.CategoryAndProductEntity
 import com.example.artyomkafood.core.database.entity.MealEntity
-import com.example.artyomkafood.core.database.entity.ScheduleEntity
 import com.example.artyomkafood.core.database.entity.merge.ProductAndMealAndScheduleEntity
 import java.util.Calendar
 
 object InitDataBase {
-    val categoryList = listOf("Овощи", "Фрукты", "Каша", "Мясо", "Молоко", "Другие")
+    val categoryList = listOf("Овощи", "Фрукты", "Каша", "Мясо", "Молочка", "Другие")
 
     val scheduleList = listOf(
         Schedule(null, name = "Завтрак", imageId = R.drawable.ic_breakfast),
@@ -28,7 +26,7 @@ object InitDataBase {
             "Яблочное пюре",
             "Индейка",
             "Кролик",
-            "БитТворог Тёма",
+            "БиоТворог Тёма",
             "Тыква",
             "Морковь")
 

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collect
@@ -29,7 +30,7 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
         return binding.root
     }
 
-    protected fun <T:Any>dataObserver(sharedFlow: SharedFlow<List<T>>,block:(list:List<T>)->Unit){
+    protected fun <T:Any>dataObserver(sharedFlow: Flow<List<T>>, block:(list:List<T>)->Unit){
         viewLifecycleOwner.lifecycleScope.launch{
             sharedFlow.collect{
                 block(it)

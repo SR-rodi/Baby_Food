@@ -17,7 +17,7 @@ interface ScheduleDao {
     suspend fun insert(list: List<ScheduleEntity>)
 
     @Query("SELECT*from schedule")
-    fun getSchedule(): List<ScheduleEntity>
+    fun getSchedule():Flow< List<ScheduleEntity>>
 
     @Query("SELECT meal_volume, meal_data,meal_id, product_name,schedule_id_merge,schedule_name " +
             "From meal,product,schedule" +

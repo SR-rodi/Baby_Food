@@ -9,7 +9,6 @@ interface ScheduleRepository {
 
     suspend fun addListSchedule(list: List<Schedule>)
 
-    suspend fun getSchedule(date: Long): List<Schedule>
+    fun getSchedule(date: Long): Flow<List<Schedule>>
 
-    suspend fun getMeal(date: Long): Flow<Map<String, MutableList<ScheduleMeal>>>
 }
