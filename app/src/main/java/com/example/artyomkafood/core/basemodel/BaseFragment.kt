@@ -30,10 +30,10 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
         return binding.root
     }
 
-    protected fun <T:Any>dataObserver(sharedFlow: Flow<List<T>>, block:(list:List<T>)->Unit){
+    protected fun <T:Any>dataObserver(flow: Flow<List<T>>, block:(list:List<T>)->Unit){
         viewLifecycleOwner.lifecycleScope.launch{
-            sharedFlow.collect{
-                block(it)
+            flow.collect{list->
+                block(list)
             }
         }
     }

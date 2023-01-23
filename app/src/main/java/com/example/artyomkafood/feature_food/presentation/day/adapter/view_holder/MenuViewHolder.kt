@@ -75,7 +75,7 @@ class MenuViewHolder(private val binding: ItemMenuBinding) : RecyclerView.ViewHo
         binding.recyclerView.isVisible = item.meal.isNotEmpty()
         binding.counter.text = item.meal.size.toString() + " шт"
         binding.title.text = item.name
-        /*binding.icon.setImageResource(item.imageId)*/
+        binding.icon.setImageResource(item.imageId)
 
     }
 }

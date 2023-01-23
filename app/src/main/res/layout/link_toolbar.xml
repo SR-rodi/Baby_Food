@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/background1"
         app:contentScrim="@color/background"
+        android:animateLayoutChanges="true"
         app:expandedTitleTextAppearance="@style/expandedBarTextStyle"
         app:layout_scrollFlags="exitUntilCollapsed|scroll">
 
@@ -22,8 +23,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_margin="26dp"
-            android:textSize="26sp"
-            android:text="@string/month"/>
+            android:text="@string/month"
+            android:textSize="26sp" />
 
         <TextView
             android:id="@+id/next_button"
@@ -31,9 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="26dp"
+            android:text="@string/next_button"
             android:textSize="15sp"
-            android:visibility="invisible"
-            android:text="@string/next_button"/>
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/back_button"
@@ -41,9 +42,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|bottom"
             android:layout_margin="26dp"
+            android:text="@string/back_button"
             android:textSize="15sp"
-            android:visibility="invisible"
-            android:text="@string/back_button"/>
+            android:visibility="invisible" />
+
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager_date"
@@ -60,17 +62,32 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_menu" />
 
+        <FrameLayout
+            android:id="@+id/frame_calendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:background="@color/background1"
+            >
+
+            <CalendarView
+                android:id="@+id/calendar"
+                android:layout_marginTop="19dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+        </FrameLayout>
+
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:layout_collapseMode="pin"
-            app:titleCentered="false"
             android:paddingTop="30dp"
+            app:layout_collapseMode="pin"
             app:title="10.12.13"
-            />
+            app:titleCentered="false" />
 
     </com.google.android.material.appbar.CollapsingToolbarLayout>
-
 
 
 </com.google.android.material.appbar.AppBarLayout>

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.artyomkafood.R
 import com.example.artyomkafood.core.ClickState
@@ -16,8 +15,6 @@ import com.example.artyomkafood.core.extensions.setOnPositionListener
 import com.example.artyomkafood.databinding.FragmentDayBinding
 import com.example.artyomkafood.feature_food.presentation.day.adapter.DateAdapter
 import com.example.artyomkafood.feature_food.presentation.day.adapter.DayAdapter
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DayFragment : BaseFragment<FragmentDayBinding>() {
@@ -28,15 +25,32 @@ class DayFragment : BaseFragment<FragmentDayBinding>() {
 
     private val adapter by lazy { DayAdapter { onClickListener(it) } }
 
-    private val dateAdapter by lazy { DateAdapter() }
+    private val dateAdapter by lazy {
+        DateAdapter() { onClickDate() }
+    }
+
+    private fun onClickDate() {
+        binding.toolbar.frameCalendar.isVisible = true
+        binding.toolbar.calendar.date = viewModel.getDateLong()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         startSettings()
 
-        dataObserver(viewModel.schedules) {
-            setAdapter(it)
+        binding.toolbar.calendar.setOnDateChangeListener { _, year, month, day ->
+            viewModel.setDate(day, month, year)
+            binding.toolbar.frameCalendar.isVisible = false
+            binding.toolbar.viewPagerDate.setCurrentItem(day-1,false)
+        }
+
+        dataObserver(viewModel.schedules) { schedules->
+            setAdapter(schedules)
+        }
+        dataObserver(viewModel.dateList){ dateList->
+            dateAdapter.submitList(dateList)
+            startSettings()
         }
     }
 
@@ -46,7 +60,7 @@ class DayFragment : BaseFragment<FragmentDayBinding>() {
     }
 
     private fun startSettings() {
-        dateAdapter.submitList(viewModel.createDayList())
+
         binding.toolbar.apply {
             viewPagerDate.apply {
                 adapter = dateAdapter
@@ -70,16 +84,22 @@ class DayFragment : BaseFragment<FragmentDayBinding>() {
 
     private fun navigation(scheduleId: Int?) {
         if (scheduleId != null) findNavController()
-            .navigate(DayFragmentDirections.actionDayFragmentToAddFragment(viewModel.getDateLong(),
-                scheduleId))
+            .navigate(
+                DayFragmentDirections.actionDayFragmentToAddFragment(
+                    viewModel.getDateLong(),
+                    scheduleId
+                )
+            )
     }
 
     private fun onClickListener(state: ClickState) {
         when (state) {
             ClickState.ADD_BUTTON -> navigation(state.index)
             ClickState.SWIPE -> viewModel.onSwipeEvent(state.meal)
-            ClickState.CLICK_ITEM -> createEditDialog(state.meal?.product_name,
-                state.meal?.meal_volume) { newVolume ->
+            ClickState.CLICK_ITEM -> createEditDialog(
+                state.meal?.product_name,
+                state.meal?.meal_volume
+            ) { newVolume ->
                 viewModel.updateMeal(state.meal, newVolume)
             }
         }
