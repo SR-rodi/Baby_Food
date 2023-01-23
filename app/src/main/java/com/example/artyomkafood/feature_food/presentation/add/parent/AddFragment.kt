@@ -1,4 +1,4 @@
-package com.example.artyomkafood.feature_food.presentation.add
+package com.example.artyomkafood.feature_food.presentation.add.parent
 
 import android.os.Bundle
 import android.view.LayoutInflater

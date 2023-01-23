@@ -3,11 +3,11 @@ package com.example.artyomkafood.feature_food.presentation.add.chldren
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.artyomkafood.core.basemodel.BaseViewModel
-import com.example.artyomkafood.feature_food.data.SettingsCategoryAdapter
+import com.example.artyomkafood.core.settings.SettingsCategoryAdapter
 import com.example.artyomkafood.feature_food.domain.model.FoodProduct
 import com.example.artyomkafood.feature_food.domain.repository.MealRepository
 import com.example.artyomkafood.feature_food.domain.repository.ProductRepository
-import com.example.artyomkafood.feature_food.presentation.add.AddViewModel.Companion.SETTING_CHILDREN_FRAGMENT
+import com.example.artyomkafood.feature_food.presentation.add.parent.AddViewModel.Companion.SETTING_CHILDREN_FRAGMENT
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

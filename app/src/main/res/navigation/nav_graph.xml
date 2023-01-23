@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/dayFragment"
-        android:name="com.example.artyomkafood.feature_food.presentation.day.DayFragment"
+        android:name="com.example.artyomkafood.feature_food.presentation.day.fragment.DayFragment"
         android:label="fragment_day"
         tools:layout="@layout/fragment_day" >
         <action
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.example.artyomkafood.feature_food.presentation.add.AddFragment"
+        android:name="com.example.artyomkafood.feature_food.presentation.add.parent.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" >
         <argument

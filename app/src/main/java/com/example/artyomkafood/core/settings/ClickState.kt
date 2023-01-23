@@ -1,4 +1,4 @@
-package com.example.artyomkafood.core
+package com.example.artyomkafood.core.settings
 
 import com.example.artyomkafood.core.database.dao.ScheduleMeal
 

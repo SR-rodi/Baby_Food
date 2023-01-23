@@ -2,14 +2,14 @@ package com.example.artyomkafood.feature_food.presentation.day.adapter.view_hold
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
-import com.example.artyomkafood.core.ClickState
+import com.example.artyomkafood.core.settings.ClickState
 import com.example.artyomkafood.core.database.dao.ScheduleMeal
 import com.example.artyomkafood.databinding.ItemScheduleBinding
 
 class ScheduleMealViewHolder(private val binding: ItemScheduleBinding) :
     RecyclerView.ViewHolder(binding.root) {
     @SuppressLint("SetTextI18n")
-    fun bind(item: ScheduleMeal,onClickItem:(state:ClickState)->Unit) {
+    fun bind(item: ScheduleMeal,onClickItem:(state: ClickState)->Unit) {
         binding.root.setOnClickListener {
             onClickItem(ClickState.CLICK_ITEM.apply{
                 meal = item

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".feature_food.presentation.add.AddFragment">
+    tools:context=".feature_food.presentation.add.parent.AddFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

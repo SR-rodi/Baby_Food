@@ -4,10 +4,9 @@ import android.annotation.SuppressLint
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.artyomkafood.core.ClickState
-import com.example.artyomkafood.core.SwipeToDelete
+import com.example.artyomkafood.core.settings.ClickState
+import com.example.artyomkafood.core.settings.SwipeToDelete
 import com.example.artyomkafood.core.database.Schedule
-import com.example.artyomkafood.core.database.dao.ScheduleMeal
 import com.example.artyomkafood.databinding.ItemMenuBinding
 import com.example.artyomkafood.feature_food.presentation.day.adapter.ScheduleMealAdapter
 

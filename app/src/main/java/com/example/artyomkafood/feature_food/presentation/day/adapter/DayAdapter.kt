@@ -2,7 +2,7 @@ package com.example.artyomkafood.feature_food.presentation.day.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.artyomkafood.core.ClickState
+import com.example.artyomkafood.core.settings.ClickState
 import com.example.artyomkafood.core.basemodel.RecyclerViewListAdapter
 import com.example.artyomkafood.core.database.Schedule
 import com.example.artyomkafood.databinding.ItemMenuBinding

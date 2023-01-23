@@ -1,4 +1,4 @@
-package com.example.artyomkafood.core
+package com.example.artyomkafood.core.settings
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView

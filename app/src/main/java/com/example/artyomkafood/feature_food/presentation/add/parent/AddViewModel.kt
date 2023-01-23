@@ -1,11 +1,11 @@
-package com.example.artyomkafood.feature_food.presentation.add
+package com.example.artyomkafood.feature_food.presentation.add.parent
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.artyomkafood.core.basemodel.BaseViewModel
 import com.example.artyomkafood.core.database.entity.ProductEntity
 import com.example.artyomkafood.core.database.entity.merge.CategoryAndProductEntity
-import com.example.artyomkafood.feature_food.data.SettingsCategoryAdapter
+import com.example.artyomkafood.core.settings.SettingsCategoryAdapter
 import com.example.artyomkafood.feature_food.domain.model.FoodCategory
 import com.example.artyomkafood.feature_food.domain.repository.CategoryRepository
 import com.example.artyomkafood.feature_food.domain.repository.ProductRepository

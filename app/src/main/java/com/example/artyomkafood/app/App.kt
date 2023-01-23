@@ -1,6 +1,7 @@
 package com.example.artyomkafood.app
 
 import android.app.Application
+import com.example.artyomkafood.di.calendarModule
 import com.example.artyomkafood.di.dataBaseModule
 import com.example.artyomkafood.di.repositoryModule
 import com.example.artyomkafood.di.viewModelModel
@@ -15,7 +16,7 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 listOf(
-                    dataBaseModule, repositoryModule, viewModelModel
+                    dataBaseModule, repositoryModule, viewModelModel, calendarModule
                 )
             )
         }
