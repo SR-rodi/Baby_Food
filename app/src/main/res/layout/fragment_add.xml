@@ -16,7 +16,7 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/background"
+            android:background="@color/background1"
             app:menu="@menu/bottom_navigate"
             app:title="Выбери Питание" />
     </com.google.android.material.appbar.AppBarLayout>

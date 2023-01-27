@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/startFragment"
+        android:icon="@drawable/ic_meal"
         android:title="Дневник"/>
 
     <item android:id="@+id/searchMealFragment"
+        android:icon="@drawable/ic_search"
         android:title="Поиск"/>
 </menu>
