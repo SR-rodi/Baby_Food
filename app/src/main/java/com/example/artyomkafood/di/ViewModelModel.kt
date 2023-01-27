@@ -2,6 +2,7 @@ package com.example.artyomkafood.di
 
 import com.example.artyomkafood.feature_food.presentation.add.parent.AddViewModel
 import com.example.artyomkafood.feature_food.presentation.add.chldren.ProductTabViewModel
+import com.example.artyomkafood.feature_food.presentation.allmeal.SearchMealViewModel
 import com.example.artyomkafood.feature_food.presentation.day.viewmodel.DayViewModel
 import com.example.artyomkafood.feature_food.presentation.init.StartViewModel
 
@@ -17,5 +18,7 @@ val viewModelModel = module {
     viewModel { AddViewModel(get(), get(), get()) }
 
     viewModel { ProductTabViewModel(get(), get(), get()) }
+
+    viewModel { SearchMealViewModel(get()) }
 
 }

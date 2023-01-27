@@ -1,6 +1,5 @@
 package com.example.artyomkafood.core.database.entity
 
-import android.os.storage.StorageVolume
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey

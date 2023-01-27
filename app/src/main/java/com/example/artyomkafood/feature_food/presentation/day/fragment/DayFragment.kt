@@ -82,7 +82,6 @@ class DayFragment : BaseFragment<FragmentDayBinding>() {
     private fun setAdapter(list: List<Schedule>) {
         adapter.submitList(list)
         binding.recyclerView.adapter = adapter
-
     }
 
     private fun navigation(scheduleId: Int?) {

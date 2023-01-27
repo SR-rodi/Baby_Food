@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/background"
-            app:menu="@menu/search_menu"
+            app:menu="@menu/bottom_navigate"
             app:title="Выбери Питание" />
     </com.google.android.material.appbar.AppBarLayout>
 

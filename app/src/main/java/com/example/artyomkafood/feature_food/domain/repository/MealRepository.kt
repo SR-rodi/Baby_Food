@@ -1,5 +1,6 @@
 package com.example.artyomkafood.feature_food.domain.repository
 
+import com.example.artyomkafood.core.database.entity.MealAndProduct
 import com.example.artyomkafood.core.database.entity.MealEntity
 import com.example.artyomkafood.core.database.entity.merge.ProductAndMealAndScheduleEntity
 import com.example.artyomkafood.feature_food.domain.model.FoodMeal
@@ -19,4 +20,6 @@ interface MealRepository {
     suspend fun delete(meal: MealEntity)
 
     suspend fun update(meal: MealEntity)
+
+    suspend fun getAllMeal(): List<MealAndProduct>
 }

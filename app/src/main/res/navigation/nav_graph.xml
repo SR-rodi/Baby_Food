@@ -72,4 +72,9 @@
             android:name="items"
             app:argType="com.example.artyomkafood.core.database.dao.ScheduleMeal" />
     </fragment>
+    <fragment
+        android:id="@+id/searchMealFragment"
+        android:name="com.example.artyomkafood.feature_food.presentation.allmeal.SearchMealFragment"
+        android:label="fragment_search_meal"
+        tools:layout="@layout/fragment_search_meal" />
 </navigation>

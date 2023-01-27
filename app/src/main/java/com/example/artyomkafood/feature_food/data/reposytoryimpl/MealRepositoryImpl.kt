@@ -1,6 +1,7 @@
 package com.example.artyomkafood.feature_food.data.reposytoryimpl
 
 import com.example.artyomkafood.core.database.dao.MealDao
+import com.example.artyomkafood.core.database.entity.MealAndProduct
 import com.example.artyomkafood.core.database.entity.MealEntity
 import com.example.artyomkafood.core.database.entity.merge.ProductAndMealAndScheduleEntity
 import com.example.artyomkafood.core.extensions.toListFoodMeal
@@ -20,6 +21,8 @@ class MealRepositoryImpl(private val dao: MealDao) : MealRepository {
     override suspend fun delete(meal: MealEntity) = dao.deleteMeal(meal)
 
     override suspend fun update(meal: MealEntity) = dao.updateMeal(meal)
+
+    override suspend fun getAllMeal()= dao.getAllMeal().sortedBy {meal-> meal.data }.reversed()
 
     override suspend fun addMealAndMerge(
         meal: MutableMap<Int, FoodProduct>,

@@ -19,3 +19,18 @@ class MealEntity(
 ) {
     fun toFoodMeal() = FoodMeal(volume, data, id, isAll)
 }
+
+class MealAndProduct(
+    @ColumnInfo(name = "meal_volume")
+    val volume: Int,
+    @ColumnInfo(name = "meal_data")
+    val data: Long,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "meal_id")
+    val id: Int? = null,
+    @ColumnInfo(name = "is_all")
+    val isAll: Boolean = true,
+    @ColumnInfo(name = "product_name")
+    val productName: String,
+) {
+}

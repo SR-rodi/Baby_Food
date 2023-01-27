@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.example.artyomkafood.core.database.entity.MealAndProduct
 import com.example.artyomkafood.core.database.entity.MealEntity
 import com.example.artyomkafood.core.database.entity.merge.ProductAndMealAndScheduleEntity
 
@@ -25,6 +26,13 @@ interface MealDao {
                 "WHERE product_id_merge =:productId"
     )
     fun getMealByProductId(productId: Int): List<MealEntity>
+
+    @Query(
+        "SELECT*, product_name FROM meal,product " +
+                "Inner Join product_meal " +
+                "On meal_id = meal_id_merge and product_id = product_id_merge"
+    )
+    fun getAllMeal(): List<MealAndProduct>
 
     @Query("SELECT seq FROM sqlite_sequence WHERE name=\"meal\"")
     fun getLastIndex(): Int
