@@ -17,7 +17,8 @@ object InitDataBase {
     )
 
     val productList =
-        listOf("Кабачок",
+        listOf(
+            "Кабачок",
             "Брокколи ",
             "Цветная капуста",
             "Рисовая каша",
@@ -28,7 +29,8 @@ object InitDataBase {
             "Кролик",
             "БиоТворог Тёма",
             "Тыква",
-            "Морковь")
+            "Морковь"
+        )
 
     val mergeList = listOf(
         CategoryAndProductEntity(1, 1),
@@ -165,10 +167,10 @@ object InitDataBase {
     fun mergeListMeal(): MutableList<ProductAndMealAndScheduleEntity> {
         val list = mutableListOf<ProductAndMealAndScheduleEntity>()
         for (i in 1..26) {
-            list.add(ProductAndMealAndScheduleEntity(1, i , 2))
+            list.add(ProductAndMealAndScheduleEntity(1, i, 2))
         }
         for (i in 27..34) {
-            list.add(ProductAndMealAndScheduleEntity(2, i , 2))
+            list.add(ProductAndMealAndScheduleEntity(2, i, 2))
         }
         for (i in 35..41) {
             list.add(ProductAndMealAndScheduleEntity(3, i, 2))

@@ -9,9 +9,9 @@ import com.example.artyomkafood.databinding.ItemScheduleBinding
 class ScheduleMealViewHolder(private val binding: ItemScheduleBinding) :
     RecyclerView.ViewHolder(binding.root) {
     @SuppressLint("SetTextI18n")
-    fun bind(item: ScheduleMeal,onClickItem:(state: ClickState)->Unit) {
+    fun bind(item: ScheduleMeal, onClickItem: (state: ClickState) -> Unit) {
         binding.root.setOnClickListener {
-            onClickItem(ClickState.CLICK_ITEM.apply{
+            onClickItem(ClickState.CLICK_ITEM.apply {
                 meal = item
             })
         }

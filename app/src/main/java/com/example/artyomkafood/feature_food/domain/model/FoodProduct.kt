@@ -6,6 +6,6 @@ class FoodProduct(
     val id: Int?,
     val name: String,
     var volume: Int,
-){
-    fun toEntity()= ProductEntity(id,name,volume)
+) {
+    fun toEntity() = ProductEntity(id, name, volume)
 }

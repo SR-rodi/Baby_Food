@@ -12,8 +12,8 @@ class ScheduleEntity(
     val id: Int? = null,
     @ColumnInfo(name = "schedule_name")
     val name: String,
-    @ColumnInfo(name="image_id")
-    val imageId:Int,
-){
-    fun toSchedule() = Schedule(id,name,imageId)
+    @ColumnInfo(name = "image_id")
+    val imageId: Int,
+) {
+    fun toSchedule() = Schedule(id, name, imageId)
 }

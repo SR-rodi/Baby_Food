@@ -16,6 +16,6 @@ class MealEntity(
     val id: Int? = null,
     @ColumnInfo(name = "is_all")
     val isAll: Boolean = true,
-){
-    fun toFoodMeal()= FoodMeal(volume, data, id, isAll)
+) {
+    fun toFoodMeal() = FoodMeal(volume, data, id, isAll)
 }

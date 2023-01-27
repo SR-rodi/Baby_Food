@@ -1,7 +1,6 @@
 package com.example.artyomkafood.feature_food.presentation.add.chldren
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible

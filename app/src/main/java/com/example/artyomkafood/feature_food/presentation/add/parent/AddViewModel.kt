@@ -28,11 +28,16 @@ class AddViewModel(
             _data.emit(categoryList)
         }
 
-    fun addProduct(name: String,categoryId:Int) {
+    fun addProduct(name: String, categoryId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             productRepository.addFood(ProductEntity(name = name))
             val lastIndex = productRepository.getLastIndex()
-            productRepository.insertMergeProductInCategory(CategoryAndProductEntity(categoryId,lastIndex))
+            productRepository.insertMergeProductInCategory(
+                CategoryAndProductEntity(
+                    categoryId,
+                    lastIndex
+                )
+            )
         }
     }
 

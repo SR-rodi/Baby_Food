@@ -20,5 +20,4 @@ class FoodAdapter(
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         holder.bind(list[position], { onClickItem(it) }) { onClickCheckBox(it) }
     }
-
 }

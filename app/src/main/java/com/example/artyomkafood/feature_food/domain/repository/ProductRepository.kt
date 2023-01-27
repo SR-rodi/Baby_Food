@@ -19,6 +19,6 @@ interface ProductRepository {
 
     suspend fun insertMergeProductInCategory(marge: CategoryAndProductEntity)
 
-    suspend fun getLastIndex():Int
+    suspend fun getLastIndex(): Int
 
 }

@@ -20,12 +20,14 @@ interface MealDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertMergeMeal(merge: ProductAndMealAndScheduleEntity)
 
-    @Query("SELECT*FROM meal Inner Join product_meal On meal_id = meal_id_merge " +
-            "WHERE product_id_merge =:productId")
+    @Query(
+        "SELECT*FROM meal Inner Join product_meal On meal_id = meal_id_merge " +
+                "WHERE product_id_merge =:productId"
+    )
     fun getMealByProductId(productId: Int): List<MealEntity>
 
     @Query("SELECT seq FROM sqlite_sequence WHERE name=\"meal\"")
-    fun getLastIndex():Int
+    fun getLastIndex(): Int
 
     @Update
     fun updateMeal(meal: MealEntity)

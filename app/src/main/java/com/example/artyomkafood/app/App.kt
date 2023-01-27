@@ -12,7 +12,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        startKoin() {
+        startKoin {
             androidContext(this@App)
             modules(
                 listOf(

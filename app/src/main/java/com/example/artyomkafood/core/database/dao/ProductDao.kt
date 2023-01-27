@@ -20,13 +20,15 @@ interface ProductDao {
     @Update
     fun updateItem(productEntity: ProductEntity)
 
-    @Query("SELECT*FROM product Inner Join category_product On product_id = id_product_food " +
-            "WHERE id_category =:categoryID ")
+    @Query(
+        "SELECT*FROM product Inner Join category_product On product_id = id_product_food " +
+                "WHERE id_category =:categoryID "
+    )
     fun getFoodByCategoryID(categoryID: Int): Flow<List<ProductEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertMerge(merge: CategoryAndProductEntity)
 
     @Query("SELECT seq FROM sqlite_sequence WHERE name=\"product\"")
-    fun getLastIndex():Int
+    fun getLastIndex(): Int
 }

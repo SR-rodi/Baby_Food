@@ -12,10 +12,10 @@ val viewModelModel = module {
 
     viewModel { StartViewModel(get(), get(), get(), get()) }
 
-    viewModel { DayViewModel(get(),get(),get()) }
+    viewModel { DayViewModel(get(), get(), get()) }
 
-    viewModel { AddViewModel(get(),get(),get()) }
+    viewModel { AddViewModel(get(), get(), get()) }
 
-    viewModel { ProductTabViewModel(get(),get(),get()) }
+    viewModel { ProductTabViewModel(get(), get(), get()) }
 
 }

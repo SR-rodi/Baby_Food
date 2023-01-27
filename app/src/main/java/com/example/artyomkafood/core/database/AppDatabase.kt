@@ -10,14 +10,16 @@ import com.example.artyomkafood.core.database.entity.*
 import com.example.artyomkafood.core.database.entity.merge.CategoryAndProductEntity
 import com.example.artyomkafood.core.database.entity.merge.ProductAndMealAndScheduleEntity
 
-@Database(entities = [
-    ProductAndMealAndScheduleEntity::class,
-    CategoryAndProductEntity::class,
-    ScheduleEntity::class,
-    CategoryEntity::class,
-    ProductEntity::class,
-    MealEntity::class,
-], version = 1)
+@Database(
+    entities = [
+        ProductAndMealAndScheduleEntity::class,
+        CategoryAndProductEntity::class,
+        ScheduleEntity::class,
+        CategoryEntity::class,
+        ProductEntity::class,
+        MealEntity::class,
+    ], version = 1
+)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getCategoryDao(): CategoryDao
@@ -26,5 +28,5 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getMealDao(): MealDao
 
-    abstract fun getScheduleDao():ScheduleDao
+    abstract fun getScheduleDao(): ScheduleDao
 }

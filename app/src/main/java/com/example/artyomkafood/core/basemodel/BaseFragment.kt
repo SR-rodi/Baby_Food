@@ -30,17 +30,17 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
         return binding.root
     }
 
-    protected fun <T:Any>dataObserver(flow: Flow<List<T>>, block:(list:List<T>)->Unit){
-        viewLifecycleOwner.lifecycleScope.launch{
-            flow.collect{list->
+    protected fun <T : Any> dataObserver(flow: Flow<List<T>>, block: (list: List<T>) -> Unit) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            flow.collect { list ->
                 block(list)
             }
         }
     }
 
-    protected fun <I:Any>visibilityStateObserve(itemFlow: Flow<I>, block:(I)->Unit){
-        viewLifecycleOwner.lifecycleScope.launch{
-            itemFlow.collect{boolean->
+    protected fun <I : Any> visibilityStateObserve(itemFlow: Flow<I>, block: (I) -> Unit) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            itemFlow.collect { boolean ->
                 block(boolean)
             }
         }

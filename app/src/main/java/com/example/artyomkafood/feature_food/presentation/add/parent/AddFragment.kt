@@ -38,10 +38,10 @@ class AddFragment : BaseFragment<FragmentAddBinding>() {
         }
     }
 
-    private fun startDialogListener(list: List<String>){
+    private fun startDialogListener(list: List<String>) {
         binding.addProductButton.setOnClickListener {
-            createAddProductDialog(list) { name,id->
-                viewModel.addProduct(name,id)
+            createAddProductDialog(list) { name, id ->
+                viewModel.addProduct(name, id)
             }
         }
     }

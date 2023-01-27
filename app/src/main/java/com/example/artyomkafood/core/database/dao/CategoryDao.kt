@@ -12,7 +12,7 @@ import com.google.android.material.circularreveal.CircularRevealHelper.Strategy
 interface CategoryDao {
 
     @Query("SELECT*FROM category")
-    fun getAllCategory():List<CategoryEntity>
+    fun getAllCategory(): List<CategoryEntity>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(category: CategoryEntity)

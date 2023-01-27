@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
-
 package com.example.artyomkafood.feature_food.presentation.day.fragment
 
 import android.os.Bundle
@@ -89,7 +87,8 @@ class DayFragment : BaseFragment<FragmentDayBinding>() {
 
     private fun navigation(scheduleId: Int?) {
         if (scheduleId != null) findNavController()
-            .navigate(DayFragmentDirections.actionDayFragmentToAddFragment(
+            .navigate(
+                DayFragmentDirections.actionDayFragmentToAddFragment(
                     viewModel.getDateLong(),
                     scheduleId
                 )

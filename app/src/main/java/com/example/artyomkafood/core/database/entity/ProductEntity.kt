@@ -7,14 +7,14 @@ import androidx.room.PrimaryKey
 import com.example.artyomkafood.feature_food.domain.model.FoodProduct
 
 @Entity(tableName = "product")
-class ProductEntity (
+class ProductEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "product_id")
-    val id:Int?=null,
+    val id: Int? = null,
     @ColumnInfo(name = "product_name")
-    val name:String,
+    val name: String,
     @ColumnInfo(name = "last_volume")
-    val volume:Int = 40
-){
-    fun toFoodProduct() = FoodProduct(id, name,volume)
+    val volume: Int = 40,
+) {
+    fun toFoodProduct() = FoodProduct(id, name, volume)
 }

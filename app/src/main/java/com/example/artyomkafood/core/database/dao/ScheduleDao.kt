@@ -17,15 +17,17 @@ interface ScheduleDao {
     suspend fun insert(list: List<ScheduleEntity>)
 
     @Query("SELECT*from schedule")
-    fun getSchedule():Flow< List<ScheduleEntity>>
+    fun getSchedule(): Flow<List<ScheduleEntity>>
 
-    @Query("SELECT meal_volume, meal_data,meal_id, product_name,schedule_id_merge,schedule_name " +
-            "From meal,product,schedule" +
-            " inner join product_meal " +
-            "on meal_id = meal_id_merge And schedule_id = schedule_id_merge " +
-            "and product_id = product_id_merge Where meal_data =:date")
+    @Query(
+        "SELECT meal_volume, meal_data,meal_id, product_name,schedule_id_merge,schedule_name " +
+                "From meal,product,schedule" +
+                " inner join product_meal " +
+                "on meal_id = meal_id_merge And schedule_id = schedule_id_merge " +
+                "and product_id = product_id_merge Where meal_data =:date"
+    )
     @MapInfo(keyColumn = "schedule_name")
-    fun getMeatByScheduleId(date: Long):Flow<Map<String,MutableList<ScheduleMeal>>>
+    fun getMeatByScheduleId(date: Long): Flow<Map<String, MutableList<ScheduleMeal>>>
 
 }
 

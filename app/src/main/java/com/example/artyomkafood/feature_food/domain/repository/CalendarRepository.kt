@@ -16,7 +16,7 @@ interface CalendarRepository {
     fun setDay(position: Int)
     fun setDate(day: Int, month: Int, year: Int)
 
-    fun createDayList(dayOfMonth:Int): MutableList<Int> {
+    fun createDayList(dayOfMonth: Int): MutableList<Int> {
         val newDateList = mutableListOf<Int>()
         for (i in 1..dayOfMonth) newDateList.add(i)
         return newDateList

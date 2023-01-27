@@ -12,6 +12,6 @@ class CategoryEntity(
     val id: Int? = null,
     @ColumnInfo(name = "category_name")
     val name: String,
-){
+) {
     fun toFoodCategory() = FoodCategory(id, name)
 }

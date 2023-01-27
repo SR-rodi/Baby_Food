@@ -34,10 +34,7 @@ class MenuViewHolder(private val binding: ItemMenuBinding) : RecyclerView.ViewHo
         }
     }
 
-    private fun onClickExpanded(
-        item: Schedule,
-        onEvent: (state: ClickState) -> Unit,
-    ) {
+    private fun onClickExpanded() {
         binding.expanded.setOnClickListener {
             binding.arrow.rotation = binding.arrow.rotation + 180
 
@@ -60,7 +57,7 @@ class MenuViewHolder(private val binding: ItemMenuBinding) : RecyclerView.ViewHo
 
         onClickAddButton(item, onEvent)
 
-        onClickExpanded(item,onEvent)
+        onClickExpanded()
 
         val adapter = ScheduleMealAdapter { onEvent(it) }
         adapter.submitList(item.meal)

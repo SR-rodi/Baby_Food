@@ -1,6 +1,5 @@
 package com.example.artyomkafood.feature_food.presentation.day.viewmodel
 
-import android.util.Log
 import com.example.artyomkafood.core.basemodel.BaseViewModel
 import com.example.artyomkafood.feature_food.domain.repository.CalendarRepository
 import kotlinx.coroutines.flow.MutableStateFlow
