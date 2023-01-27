@@ -17,26 +17,6 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/foodFragment"
-        android:name="com.example.artyomkafood.feature_init.presentation.food.FoodFragment"
-        android:label="fragment_food"
-        tools:layout="@layout/fragment_food" >
-        <argument android:name="category_id"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_foodFragment_to_mealFragment"
-            app:destination="@id/mealFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/mealFragment"
-        android:name="com.example.artyomkafood.feature_init.presentation.meal.MealFragment"
-        android:label="fragment_meal"
-        tools:layout="@layout/fragment_meal" >
-        <argument
-            android:name="productId"
-            app:argType="integer" />
-    </fragment>
-    <fragment
         android:id="@+id/dayFragment"
         android:name="com.example.artyomkafood.feature_food.presentation.day.fragment.DayFragment"
         android:label="fragment_day"
