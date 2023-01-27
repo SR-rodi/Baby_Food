@@ -24,9 +24,6 @@
         <action
             android:id="@+id/action_dayFragment_to_addFragment"
             app:destination="@id/addFragment" />
-        <action
-            android:id="@+id/action_dayFragment_to_correctFragment"
-            app:destination="@id/correctFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -39,18 +36,6 @@
         <argument
             android:name="scheduleId"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_addFragment_to_correctFragment"
-            app:destination="@id/correctFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/correctFragment"
-        android:name="com.example.artyomkafood.feature_food.presentation.correct.CorrectFragment"
-        android:label="fragment_correct"
-        tools:layout="@layout/dialog_correct" >
-        <argument
-            android:name="items"
-            app:argType="com.example.artyomkafood.core.database.dao.ScheduleMeal" />
     </fragment>
     <fragment
         android:id="@+id/searchMealFragment"
