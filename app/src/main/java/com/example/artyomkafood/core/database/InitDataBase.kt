@@ -196,9 +196,7 @@ object InitDataBase {
             list.add(ProductAndMealAndScheduleEntity(10, i, 3))
         }
         list.add(ProductAndMealAndScheduleEntity(11, 97, 4))
-/*        for (i in 98..102) {
-            list.add(ProductAndMealAndScheduleEntity(8, i , 2))
-        }*/
+
         return list
     }
 

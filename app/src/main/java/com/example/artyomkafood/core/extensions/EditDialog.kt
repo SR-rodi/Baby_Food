@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import com.example.artyomkafood.R
-import kotlinx.android.synthetic.main.dialo_correct.view.*
+import kotlinx.android.synthetic.main.dialog_correct.view.*
 
 fun Fragment.createEditDialog(
     product: String?,
@@ -13,7 +13,7 @@ fun Fragment.createEditDialog(
     editMeal: (newVolume: String) -> Unit,
 ) {
     val view = LayoutInflater.from(requireContext())
-        .inflate(R.layout.dialo_correct, null)
+        .inflate(R.layout.dialog_correct, null)
     val editButton = view.edit_button
     val title = view.title
     val editText = view.counter

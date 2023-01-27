@@ -1,8 +1,10 @@
 package com.example.artyomkafood.feature_food.presentation.add.chldren
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.artyomkafood.core.basemodel.BaseFragment
 import com.example.artyomkafood.core.extensions.createEditDialog
@@ -11,16 +13,18 @@ import com.example.artyomkafood.feature_food.domain.model.FoodProduct
 import com.example.artyomkafood.feature_food.presentation.add.adapter.FoodAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ProductTabFragment() : BaseFragment<FragmentFoodBinding>() {
+class ProductTabFragment : BaseFragment<FragmentFoodBinding>() {
     override fun initBinding(inflater: LayoutInflater) = FragmentFoodBinding.inflate(inflater)
 
     private val viewModel by viewModel<ProductTabViewModel>()
 
-    private val adapter by lazy { FoodAdapter({ product->
-        createEditDialog(product.name,product.volume){ newValue->
-            viewModel.updateProduct(product,newValue)
-        }
-    }) { onClickCheckBox(it) } }
+    private val adapter by lazy {
+        FoodAdapter({ product ->
+            createEditDialog(product.name, product.volume) { newValue ->
+                viewModel.updateProduct(product, newValue)
+            }
+        }) { onClickCheckBox(it) }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +34,10 @@ class ProductTabFragment() : BaseFragment<FragmentFoodBinding>() {
         onClickAddButton()
 
         dataObserver(viewModel.data) { list -> setAdapter(list) }
+
+        visibilityStateObserve(viewModel.isVisibilityButton) { visibility ->
+            binding.addButton.isVisible = visibility
+        }
     }
 
     private fun setAdapter(list: List<FoodProduct>) {

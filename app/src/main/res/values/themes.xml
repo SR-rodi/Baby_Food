@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.ArtyomkaFood" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/teal_200</item>
+        <item name="colorPrimaryVariant">@color/teal_200</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:alertDialogTheme">@style/DialogThem</item>
     </style>
 
     <style name="expandedBarTextStyle" parent="Theme.ArtyomkaFood">
@@ -19,4 +20,10 @@
         <item name="android:alpha">0</item>
         <item name="android:textColor">@android:color/transparent</item>
     </style>
+
+
+    <style name="DialogThem" parent="Theme.MaterialComponents.Light.Dialog.Alert.Bridge">
+        <item name="android:windowBackground">@drawable/bg_dialog</item>
+    </style>
+
 </resources>

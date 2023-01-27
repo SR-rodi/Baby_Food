@@ -67,7 +67,7 @@
         android:id="@+id/correctFragment"
         android:name="com.example.artyomkafood.feature_food.presentation.correct.CorrectFragment"
         android:label="fragment_correct"
-        tools:layout="@layout/dialo_correct" >
+        tools:layout="@layout/dialog_correct" >
         <argument
             android:name="items"
             app:argType="com.example.artyomkafood.core.database.dao.ScheduleMeal" />

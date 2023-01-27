@@ -38,6 +38,14 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
         }
     }
 
+    protected fun <I:Any>visibilityStateObserve(itemFlow: Flow<I>, block:(I)->Unit){
+        viewLifecycleOwner.lifecycleScope.launch{
+            itemFlow.collect{boolean->
+                block(boolean)
+            }
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

@@ -1,15 +1,11 @@
 package com.example.artyomkafood.core.extensions
 
 import android.app.AlertDialog
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ArrayAdapter
-import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import com.example.artyomkafood.R
-import com.example.artyomkafood.feature_food.domain.model.FoodCategory
-import kotlinx.android.synthetic.main.dialo_correct.view.*
 import kotlinx.android.synthetic.main.dialog_add_product.view.*
 
 fun Fragment.createAddProductDialog(
@@ -39,7 +35,7 @@ fun Fragment.createAddProductDialog(
         .create()
 
     saveButton.setOnClickListener {
-        addDataBase(name.text.toString(), index+1)
+        addDataBase(name.text.toString(), index + 1)
         dialog.dismiss()
     }
     dialog.show()
